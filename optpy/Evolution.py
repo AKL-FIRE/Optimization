@@ -4,12 +4,20 @@ import random
 import copy
 
 class Evolution(op.Optimization):
-    def __init__(self,useGUI,str_fun=None,epsilon=None):
+    def __init__(self,useGUI,str_fun=None,epsilon=None,N=None,pc=None,pm=None,evo_x=None,out_evo_x=None):
         super(Evolution, self).__init__(useGUI, str_fun, epsilon)
         if useGUI == False:
             self.N = int(input('请输入群体个数：'))
             self.pc = float(input('请输入交叉概率：'))
             self.pm = float(input('请输入变异概率：'))
+        else:
+            self.N = int(N)
+            self.pc = float(pc)
+            self.pm = float(pm)
+            self.x_val = evo_x.split(',')
+            self.x_val = [float(x) for x in self.x_val]
+            self.out_evo_x = out_evo_x
+            print('该算法初始化完成.')
 
     #选择算子
     def Selection(self):
@@ -137,13 +145,10 @@ class Evolution(op.Optimization):
             MG.insert(index2, self.max_fit)
             self.fit_g.insert(index2, self.max_fit_fit)
             self.PG = MG
-            print('繁衍到第%d代时的最高适应度：%.15f,此时的x值为：%f,x计算出的适应度：%f' % (G, self.max_fit_fit, self.Decode([self.max_fit])[0],self.CalculateFit(self.Decode([self.max_fit]))[0]))
+            self.out_evo_x.set('繁衍到第%d代时的最高适应度：%.15f,此时的x值为：%f,x计算出的适应度：%f' % (G, self.max_fit_fit, self.Decode([self.max_fit])[0],self.CalculateFit(self.Decode([self.max_fit]))[0]))
             if self.FES >= 10000 or G >= 100:
-                break
+                return self.Decode([self.max_fit])[0], self.CalculateFit(self.Decode([self.max_fit]))[0], \
+                       '繁衍到第%d代时的最高适应度：%.15f,此时的x值为：%f,x计算出的适应度：%f' % (
+                       G, self.max_fit_fit, self.Decode([self.max_fit])[0],
+                       self.CalculateFit(self.Decode([self.max_fit]))[0])
             G = G + 1
-
-
-a = Evolution(False)
-a.Calculate()
-
-
