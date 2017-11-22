@@ -45,7 +45,7 @@ class MyApp():
             self.InsertValue = IV.InsertValue(True,self.str_fun.get(),self.str_epsilon.get())
         if self.v.get() == 7:
             from optpy import Evolution as EV
-            self.Evolution = EV.Evolution(True,self.str_fun.get(),self.str_epsilon.get(),self.N.get(),self.pc.get(),self.pm.get(),self.evo_x.get(),self.result_out)
+            self.Evolution = EV.Evolution(True,self.str_fun.get(),self.str_epsilon.get(),self.N.get(),self.pc.get(),self.pm.get(),self.evo_x.get())
 
     def cancel(self):
         sys.exit()
