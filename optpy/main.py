@@ -1,5 +1,9 @@
 from optpy import GUI
 
-a = GUI.MyApp()
-a.run()
+def main():
+    a = GUI.MyApp()
+    a.run()
+
+if __name__ == '__main__':
+    main()
 
