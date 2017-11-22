@@ -1,0 +1,5 @@
+def GradientDescent(data,alpha,epsilon,count=1000):
+    pass
+
+def CalculateH(x,theta):
+    return theta * x;

@@ -1,0 +1,11 @@
+import numpy as np
+def GradientDescent(data,alpha,epsilon,count=1000):
+    pass
+
+def CalculateH(x,theta):
+    return theta.transpose() * x;
+
+def CalculateJ(data,theta):
+    length = data.shape[1]
+    return 1 / (2 * length) * np.sum(CalculateH(data[0,:], theta) - data[1,:]) ** 2,axis=0)
+    

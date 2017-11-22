@@ -1,0 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+def GradientDescent(data,theta,bias,alpha,epsilon,count=1000):
+    k=0
+    J = []
+    J.append(CalculateJ(data, theta,bias))
+    while k <= count and J >= epsilon:
+        d1,d2 = CalculateDerivative(data, theta, bias)
+        theta = theta + alpha * -d1
+        bias = bias + alpha * -d2
+        k = k + 1
+        J.append(CalculateJ(data, theta,bias))
+    plt.figure(2)
+    plt.plot(range(k+1),J)
+    return [theta,bias]
+
+def CalculateH(x,theta,bias):
+    return theta * x + bias;
+
+def CalculateJ(data,theta,bias):
+    length = data.shape[1]
+    return (1.0 / (2.0 * length)) * np.sum((CalculateH(data[0,:], theta,bias) - data[1,:]) ** 2,axis=1)
+
+def CalculateDerivative(data,theta,bias):
+    #a = CalculateJ(data, theta+1e-5, bias)
+    #b = CalculateJ(data, theta, bias)
+    #c = (a-b)/1e-5
+    #sd = 1
+    return (CalculateJ(data, theta+1e-5, bias) - CalculateJ(data, theta-1e-5, bias)) / 2e-5 , (CalculateJ(data, theta, bias+1e-5) - CalculateJ(data, theta, bias-1e-5)) / 2e-5

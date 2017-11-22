@@ -1,0 +1,8 @@
+INSTUPGradientDescent3d
+/Users/apple/Desktop/大作业合集/最优化/fitting/GradientDescent3d.py
+INFOS:&&2|1|2|0&&2|3|2|0&&2|4|2|0&&2|5|2|0
+GradientDescent3d=2
+CalculateJ=4
+CalculateH=3
+GradientDescent=1
+CalculateDerivative=5

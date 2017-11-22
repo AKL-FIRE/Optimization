@@ -1,0 +1,22 @@
+#!/usr/local/bin/python2.7
+#-*- coding: UTF-8 -*-
+import numpy as np
+import os
+import matplotlib.pyplot as plt
+##############读取文件内容并显示################
+data = np.loadtxt('./ex1data1.txt')
+plt.figure(1)
+plt.scatter(data[:,0],data[:,1])
+print(data[:,0].shape,data[:,0].shape)
+plt.title('The data Distribution')
+print('The matrix dimension is:',data.shape)
+#############初始化拟合直线##############
+theta = np.random.rand(1,1) * 10
+bias = np.random.rand(1,1)
+x = np.linspace(0, 22, 50).reshape(1,50)
+y = theta * x + bias
+print(x.shape,y.shape)
+plt.plot(x[0,:],y[0,:])
+plt.show()
+#############进行拟合##############
+

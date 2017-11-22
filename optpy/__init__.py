@@ -1,0 +1,1 @@
+__all__ = ['CoordinateAlternation','DFP','GradientDescent','NewtonMethod','GoldSegment']

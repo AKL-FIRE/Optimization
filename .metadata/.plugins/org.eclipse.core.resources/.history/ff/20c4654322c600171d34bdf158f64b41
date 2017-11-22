@@ -1,0 +1,9 @@
+def GradientDescent(data,alpha,epsilon,count=1000):
+    pass
+
+def CalculateH(x,theta):
+    return theta.transpose() * x;
+
+def CalculateJ(data,theta):
+    length = data.shape[1]
+    1 / (2 * length) * (CalculateH(data[:,0], theta) - data[:,1]) ** 2

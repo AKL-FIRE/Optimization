@@ -1,0 +1,30 @@
+-- VERSION_4
+-- START DISKCACHE_2
+/Users/apple/Desktop/大作业合集/最优化/.metadata/.plugins/org.eclipse.core.resources/.projects/fitting/com.python.pydev.analysis/v2_indexcache
+GradientDescent3d|1510370713000000000|/Users/apple/Desktop/大作业合集/最优化/fitting/GradientDescent3d.py
+GradientDescent|1510369832000000000|/Users/apple/Desktop/大作业合集/最优化/fitting/GradientDescent.py
+exdata2|1510379336000000000|/Users/apple/Desktop/大作业合集/最优化/fitting/exdata2.py
+exdata1|1510329790000000000|/Users/apple/Desktop/大作业合集/最优化/fitting/exdata1.py
+-- END DISKCACHE
+-- START DICTIONARY
+4
+4=GradientDescent3d
+3=GradientDescent
+1=exdata2
+2=exdata1
+-- END DICTIONARY
+-- START TREE 1
+9
+ax|1|ax!11@
+bia|2|bias!19@bias!11@
+cal|6|CalculateDerivative!26@CalculateJ!34@CalculateDerivative!34@CalculateJ!26@CalculateH!26@CalculateH!34@
+dat|2|data!11@data!19@
+gra|2|GradientDescent!34@GradientDescent!26@
+row|3|row2!11@row1!11@row3!11@
+the|2|theta!11@theta!19@
+x|1|x!11@
+y|2|y!11@y!19@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

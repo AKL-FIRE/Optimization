@@ -1,0 +1,23 @@
+import numpy as np
+def GradientDescent(data,theta,alpha,epsilon,count=1000):
+    k=1
+    J = CalculateJ(data, theta)
+    while k <= count and J >= epsilon:
+        d = -CalculateDerivative(data, theta)
+        theta = theta + alpha * d
+        k = k + 1
+    return theta
+
+def CalculateH(x,theta):
+    return theta * x;
+
+def CalculateJ(data,theta):
+    length = data.shape[1]
+    a = CalculateH(data[0,:], theta) - data[1,:]
+    b = a ** 2
+    c = np.sum(b, axis=1)
+    d = 1 / (2*length)*c
+    #return 1 / (2 * length) * np.sum((CalculateH(data[0,:], theta) - data[1,:]) ** 2,axis=1)
+
+def CalculateDerivative(data,theta):
+    return (CalculateDerivative(data, theta+1e-5) - CalculateDerivative(data, theta) / 1e-5)
