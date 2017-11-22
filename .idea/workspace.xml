@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c5254f2a-75e9-4175-99c5-95e6f75514bd" name="Default" comment="Update Evolution.py and GUI.py">
+    <list default="true" id="c5254f2a-75e9-4175-99c5-95e6f75514bd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/optpy/Evolution.py" afterPath="$PROJECT_DIR$/optpy/Evolution.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/optpy/GUI.py" afterPath="$PROJECT_DIR$/optpy/GUI.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -432,7 +430,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511364620283</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update Evolution.py and GUI.py">
+      <created>1511365041919</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1511365041919</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
