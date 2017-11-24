@@ -27,8 +27,12 @@ class DFP(op.Optimization):
         self.f_gradient = f_gradient_value
         while True:
             d = -1.0 * H * f_gradient_value.transpose()
-            lambda_ = self.OneDimensionSearch(d)
-            self.x_val1 = list(sy.Matrix(self.x_val).reshape(self.x_length,1) + lambda_[0] * d)
+            if self.maxpow == 7: #该为2
+                lambda_ = self.OneDimensionSearch(d)
+                self.x_val1 = list(sy.Matrix(self.x_val).reshape(self.x_length, 1) + lambda_[0] * d)
+            else:
+                lambda_ = self.Newton(self.x,self.x_val,self.epsilon,self.f,d)
+                self.x_val1 = list(sy.Matrix(self.x_val).reshape(self.x_length, 1) + lambda_ * d)
             f_gradient_value = f_gradient
             for i in range(self.x_length):
                 f_gradient_value = f_gradient_value.subs({self.x[i]: self.x_val1[i]})
@@ -42,7 +46,7 @@ class DFP(op.Optimization):
             else:
                 p = sy.Matrix(self.x_val1).reshape(self.x_length,1) - sy.Matrix(self.x_val).reshape(self.x_length,1)
                 q = (self.f_gradient1 - self.f_gradient).transpose()
-                H = H + ((p * p.T) / (p.T * q)[0]) - ((H * q * q.T * H) / (q.T * H * q)[0])
+                H = H + ((p * p.T) / ((p.T * q)[0]+1e-6)) - ((H * q * q.T * H) / ((q.T * H * q)[0]+1e-6))
                 k = k + 1
                 self.x_val = self.x_val1
                 self.f_gradient = self.f_gradient1

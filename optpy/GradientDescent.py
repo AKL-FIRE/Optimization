@@ -2,8 +2,8 @@ import optpy.Optimization as op
 import sympy as sy
 
 class GradientDescent(op.Optimization):
-    def __init__(self,useGUI,str_fun=None,epsilon=None):
-        super(GradientDescent, self).__init__(useGUI, str_fun, epsilon)
+    def __init__(self,useGUI,str_fun=None,epsilon=None,result_out=None):
+        super(GradientDescent, self).__init__(useGUI, str_fun, epsilon,result_out)
         if useGUI == False:
             self.alpha = float(input('请输入学习率alpha：'))
             print('该算法初始化完成。')

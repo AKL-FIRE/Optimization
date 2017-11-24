@@ -18,11 +18,13 @@ class NewtonMethod(op.Optimization):
             d = -1 * f_diff2**-1 * f_diff1.T
             for i in range(self.x_length):
                 d = d.subs({self.x[i]: self.x_val[i]})
+            d = d.evalf()
             if d.norm() <= self.epsilon:
                 self.x_star = self.x_val
                 print('经过', k, '次迭代后得到的', '最优解的点为： ', self.x, ' = ', self.x_star, ' 此点处函数值为：', self.calcufun())
                 output_str = '经过' + str(k) + '次迭代后得到的最优解的点为： ' + str(self.x) + '=' + str(
                     self.x_star) + ' 此点处函数值为：' + str(self.calcufun())
                 return self.x_star, self.calcufun(), output_str
-            self.x_val = list(sy.Matrix(self.x_val).reshape(self.x_length, 1) + d)
+            #lambda_ = self.Newton(self.x, self.x_val, self.epsilon, self.f, d)
+            self.x_val = list(sy.Matrix(self.x_val).reshape(self.x_length, 1) + 1 * d) #玄学参数0.4
             k = k + 1
