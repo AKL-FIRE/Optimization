@@ -1,9 +1,9 @@
 # Optimization
 This repository consists of a series of algorithm about optimization.
 
-I developed an module about optimization problems.
+I developed a module about optimization problems.
 
-You can use optpy to Calculate your optimization problems. In this module I designed interface and GUI for users.
+You can use optpy to calculate your optimization problems. In this module, I designed interface and GUI for users.
 
 main.py uses GUI to help you find the fittest method to solve your problems.
 
