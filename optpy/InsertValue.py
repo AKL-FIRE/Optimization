@@ -3,21 +3,30 @@ import sympy as sy
 import random
 
 class InsertValue(op.Optimization):
-    def __init__(self,useGUI,str_fun=None,epsilon=None):
+    def __init__(self,useGUI,str_fun=None,epsilon=None,Search=None):
         super(InsertValue, self).__init__(useGUI, str_fun, epsilon)
         if self.x.__len__() != 1:
             raise('非法的参数个数，只允许单变量函数。')
         self.t_star = 0
         self.f_star = 0
         if useGUI == False:
-            self.t1 = self.GetX()[0]
-            self.t2 = self.GetX()[1]
+            t = self.GetX()
+            self.t1 = t[0]
+            self.t2 = t[1]
             self.t0 = (self.t1 + self.t2) / 2
             print('该算法初始化完成。')
         else:
-            self.t1 = self.GetX()[0]
-            self.t2 = self.GetX()[1]
-            self.t0 = (self.t1 + self.t2) / 2
+            if Search != '':
+                str_search = Search.split(',')
+                str_search = [float(x) for x in str_search]
+                self.t1 = min(str_search)
+                self.t2 = max(str_search)
+                self.t0 = (self.t1 + self.t2) / 2
+            else:
+                t = self.GetX()
+                self.t1 = t[0]
+                self.t2 = t[1]
+                self.t0 = (self.t1 + self.t2) / 2
             print('该算法初始化完成。')
 
     #加步探索法寻找区间
@@ -63,6 +72,7 @@ class InsertValue(op.Optimization):
                 self.t_star = t_
                 self.f_star = self.f.evalf(subs={self.x[0]: t_})
                 output_str = '搜索后的最佳点为：'+ str(self.t_star)+' 此时的函数值为：'+str(self.f_star)
+                print(output_str)
                 return self.t_star, self.f_star, output_str
             else:
                 if t_ > t0:

@@ -3,17 +3,25 @@ import sympy as sy
 import random
 
 class GoldSegment(op.Optimization):
-    def __init__(self,useGUI,str_fun=None,epsilon=None):
+    def __init__(self,useGUI,str_fun=None,epsilon=None,Search=None):
         super(GoldSegment, self).__init__(useGUI, str_fun, epsilon)
         if self.x.__len__() != 1:
             raise('非法的参数个数，只允许单变量函数。')
         if useGUI == False:
-            self.a = self.GetX()[0]
-            self.b = self.GetX()[1]
+            t = self.GetX()
+            self.a = t[0]
+            self.b = t[1]
             print('该算法初始化完成。')
         else:
-            self.a = self.GetX()[0]
-            self.b = self.GetX()[1]
+            if Search != '':
+                str_search = Search.split(',')
+                str_search = [float(x) for x in str_search]
+                self.a = min(str_search)
+                self.b = max(str_search)
+            else:
+                t = self.GetX()
+                self.a = t[0]
+                self.b = t[1]
             print('该算法初始化完成。')
 
     def Calculate(self):

@@ -37,13 +37,13 @@ class MyApp():
             self.GradientDescent = GD.GradientDescent(True,self.str_fun.get(),self.str_epsilon.get(),self.result_out)
         if self.v.get() == 4:
             from optpy import NewtonMethod as NM
-            self.NewtonMethod = NM.NewtonMethod(True,self.str_fun.get(),self.str_epsilon.get())
+            self.NewtonMethod = NM.NewtonMethod(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
         if self.v.get() == 5:
             from optpy import GoldSegment as GS
-            self.GoldSegment = GS.GoldSegment(True,self.str_fun.get(),self.str_epsilon.get())
+            self.GoldSegment = GS.GoldSegment(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
         if self.v.get() == 6:
             from optpy import InsertValue as IV
-            self.InsertValue = IV.InsertValue(True,self.str_fun.get(),self.str_epsilon.get())
+            self.InsertValue = IV.InsertValue(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
         if self.v.get() == 7:
             from optpy import Evolution as EV
             self.Evolution = EV.Evolution(True,self.str_fun.get(),self.str_epsilon.get(),self.N.get(),self.pc.get(),self.pm.get(),self.evo_x.get())
@@ -162,12 +162,15 @@ class MyApp():
         #参数输入
         self.str_fun = tk.StringVar()
         self.str_epsilon = tk.StringVar()
+        self.str_segment = tk.StringVar()
         self.group3 = tk.LabelFrame(self.root, text='2.参数输入（必选）：', padx=5, pady=5)
         self.group3.grid(row=1, column=1, padx=10, pady=10)
         tk.Label(self.group3,text='目标函数输入：').grid(row=0,column=0,padx=10,pady=10)
         tk.Entry(self.group3,textvariable = self.str_fun).grid(row=0,column=1,padx=10,pady=10)
         tk.Label(self.group3, text='最大误差输入：').grid(row=1, column=0, padx=10, pady=10)
         tk.Entry(self.group3, textvariable=self.str_epsilon).grid(row=1, column=1, padx=10, pady=10)
+        tk.Label(self.group3, text='单变量搜索区间（可选,用逗号隔开）：').grid(row=2, column=0, padx=10, pady=10)
+        tk.Entry(self.group3, textvariable=self.str_segment).grid(row=2, column=1, padx=10, pady=10)
 
         #输出结果
         #self.result_out = tk.StringVar()

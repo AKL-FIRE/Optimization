@@ -2,11 +2,16 @@ import optpy.Optimization as op
 import sympy as sy
 
 class NewtonMethod(op.Optimization):
-    def __init__(self,useGUI,str_fun=None,epsilon=None):
+    def __init__(self,useGUI,str_fun=None,epsilon=None,Search=None):
         super(NewtonMethod, self).__init__(useGUI, str_fun, epsilon)
         if useGUI == False:
             print('该算法初始化完成。')
         else:
+            if self.x_length == 1:
+                if Search != '':
+                    str_search = Search.split(',')
+                    str_search = [float(x) for x in str_search]
+                    self.x_val = [(min(str_search) + max(str_search)) / 2]
             print('该算法初始化完成。')
 
     def Calculate(self):
