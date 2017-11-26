@@ -12,6 +12,7 @@ class MyApp():
         #最优化算法
         self.CoordinateAlternation = None
         self.DFP = None
+        self.BFGS = None
         self.GradientDescent = None
         self.NewtonMethod = None
         self.GoldSegment = None
@@ -33,18 +34,21 @@ class MyApp():
             from optpy import DFP
             self.DFP = DFP.DFP(True,self.str_fun.get(),self.str_epsilon.get())
         if self.v.get() == 3:
+            from optpy import BFGS
+            self.BFGS = BFGS.BFGS(True,self.str_fun.get(),self.str_epsilon.get())
+        if self.v.get() == 4:
             from optpy import GradientDescent as GD
             self.GradientDescent = GD.GradientDescent(True,self.str_fun.get(),self.str_epsilon.get(),self.result_out)
-        if self.v.get() == 4:
+        if self.v.get() == 5:
             from optpy import NewtonMethod as NM
             self.NewtonMethod = NM.NewtonMethod(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
-        if self.v.get() == 5:
+        if self.v.get() == 6:
             from optpy import GoldSegment as GS
             self.GoldSegment = GS.GoldSegment(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
-        if self.v.get() == 6:
+        if self.v.get() == 7:
             from optpy import InsertValue as IV
             self.InsertValue = IV.InsertValue(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
-        if self.v.get() == 7:
+        if self.v.get() == 8:
             from optpy import Evolution as EV
             self.Evolution = EV.Evolution(True,self.str_fun.get(),self.str_epsilon.get(),self.N.get(),self.pc.get(),self.pm.get(),self.evo_x.get())
 
@@ -73,50 +77,60 @@ class MyApp():
             print('进程:' + str(a.pid) + '开始运行！')
             self.processinges.append(a)
         if self.v.get() == 3:
+            if self.BFGS == None:
+                raise('此方法未初始化')
+            #self.result = self.DFP.Calculate()
+            #self.result_out.set(self.result[2])
+            a = multiprocessing.Process(target=self.BFGS.Calculate, name='3')
+            a.daemon = True
+            a.start()
+            print('进程:' + str(a.pid) + '开始运行！')
+            self.processinges.append(a)
+        if self.v.get() == 4:
             if self.GradientDescent == None:
                 raise('此方法未初始化')
-            a = multiprocessing.Process(target=self.GradientDescent.Calculate,name='3')
+            a = multiprocessing.Process(target=self.GradientDescent.Calculate,name='4')
             a.daemon = True
             a.start()
             print('进程:' + str(a.pid) + '开始运行！')
             self.processinges.append(a)
             #self.result_out.set(self.result[2])
-        if self.v.get() == 4:
+        if self.v.get() == 5:
             if self.NewtonMethod == None:
                 raise('此方法未初始化')
             #self.result = self.NewtonMethod.Calculate()
             #self.result_out.set(self.result[2])
-            a = multiprocessing.Process(target=self.NewtonMethod.Calculate, name='4')
-            a.daemon = True
-            a.start()
-            print('进程:' + str(a.pid) + '开始运行！')
-            self.processinges.append(a)
-        if self.v.get() == 5:
-            if self.GoldSegment == None:
-                raise('此方法未初始化')
-            #self.result = self.GoldSegment.Calculate()
-            #self.result_out.set(self.result[2])
-            a = multiprocessing.Process(target=self.GoldSegment.Calculate, name='5')
+            a = multiprocessing.Process(target=self.NewtonMethod.Calculate, name='5')
             a.daemon = True
             a.start()
             print('进程:' + str(a.pid) + '开始运行！')
             self.processinges.append(a)
         if self.v.get() == 6:
-            if self.InsertValue == None:
+            if self.GoldSegment == None:
                 raise('此方法未初始化')
-            #self.result = self.InsertValue.Calculate()
+            #self.result = self.GoldSegment.Calculate()
             #self.result_out.set(self.result[2])
-            a = multiprocessing.Process(target=self.InsertValue.Calculate, name='6')
+            a = multiprocessing.Process(target=self.GoldSegment.Calculate, name='6')
             a.daemon = True
             a.start()
             print('进程:' + str(a.pid) + '开始运行！')
             self.processinges.append(a)
         if self.v.get() == 7:
+            if self.InsertValue == None:
+                raise('此方法未初始化')
+            #self.result = self.InsertValue.Calculate()
+            #self.result_out.set(self.result[2])
+            a = multiprocessing.Process(target=self.InsertValue.Calculate, name='7')
+            a.daemon = True
+            a.start()
+            print('进程:' + str(a.pid) + '开始运行！')
+            self.processinges.append(a)
+        if self.v.get() == 8:
             if self.Evolution == None:
                 raise('此方法未初始化')
             #self.result = self.Evolution.Calculate()
             #self.result_out.set(self.result[2])
-            a = multiprocessing.Process(target=self.Evolution.Calculate, name='7')
+            a = multiprocessing.Process(target=self.Evolution.Calculate, name='8')
             a.daemon = True
             a.start()
             print('进程:' + str(a.pid) + '开始运行！')
@@ -135,8 +149,8 @@ class MyApp():
         # 最优化方法选择
         self.group2 = tk.LabelFrame(self.root, text='1.请选择您的优化方法：', padx=5, pady=5)
         self.group2.grid(row=0, column=1, padx=10, pady=10)
-        LANGS = [('CoordinateAlternation(多变量高次优化)', 1), ('DFP(多变量高次优化)', 2), ('GradientDescent(多变量高次优化)', 3), ('NewtonMethod(多变量高次优化)', 4),
-                 ('GoldSegment(单变量高次优化)', 5),('InsertValue(单变量高次优化)', 6),('Evolution进化算法(单变量高次优化)',7)]
+        LANGS = [('CoordinateAlternation(多变量高次优化)', 1), ('DFP(多变量高次优化)', 2), ('BFGS(多变量高次优化)', 3) ,('GradientDescent(多变量高次优化)', 4), ('NewtonMethod(多变量高次优化)', 5),
+                 ('GoldSegment(单变量高次优化)', 6),('InsertValue(单变量高次优化)', 7),('Evolution进化算法(单变量高次优化)',8)]
         self.v = tk.IntVar()
         self.v.set(1)
         for lang, num in LANGS:
