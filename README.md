@@ -7,3 +7,4 @@ You can use optpy to Calculate your optimization problems. In this module I desi
 
 main.py uses GUI to help you find the fittest method to solve your problems.
 
+![GUI](https://github.com/AKL-FIRE/Optimization/blob/master/optpy/GUI.png)
