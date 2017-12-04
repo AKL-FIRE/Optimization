@@ -4,7 +4,7 @@ import optpy.Optimization as op
 class MixPenalty(op.Optimization):
     def __init__(self,useGUI,str_fun=None,epsilon=None):
         super(MixPenalty, self).__init__(useGUI, str_fun, epsilon)
-        self.theta = 10
+        self.theta = 2
         self.c = 0.1
         str_constrain_eaqual = input('请输入等式约束条件，以；分隔：')
         str_constrain_uneaqual = input('请输入不等式约束条件，以；分隔：')

@@ -31,5 +31,5 @@ class NewtonMethod(op.Optimization):
                     self.x_star) + ' 此点处函数值为：' + str(self.calcufun())
                 return self.x_star, self.calcufun(), output_str
             #lambda_ = self.Newton(self.x, self.x_val, self.epsilon, self.f, d)
-            self.x_val = list(sy.Matrix(self.x_val).reshape(self.x_length, 1) + 1 * d) #玄学参数0.4
+            self.x_val = list(sy.Matrix(self.x_val).reshape(self.x_length, 1) + 0.1 * d) #玄学参数0.1
             k = k + 1

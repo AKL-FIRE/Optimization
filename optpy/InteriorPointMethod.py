@@ -5,7 +5,7 @@ class InteriorPointMethod(op.Optimization):
     def __init__(self,useGUI,str_fun=None,epsilon=None):
         super(InteriorPointMethod,self).__init__(useGUI, str_fun, epsilon)
 
-        self.beta = 0.1
+        self.beta = 10
         self.r = 10.0  # 初始惩罚因子
         str_constrain = input('请输入约束条件，以；分隔：')
         self.str_constrain = str_constrain.split(';')
@@ -30,12 +30,14 @@ class InteriorPointMethod(op.Optimization):
                 print(result[2])
                 break
             else:
-                self.r = self.r * self.beta
+                self.r = self.r / self.beta
                 k = k + 1
                 str_penalty = self.GeneratePenaltyFun(self.r, self.str_constrain)
                 self.penalty_f = sy.simplify(str_penalty)
+                print('罚函数为：',self.penalty_f)
                 self.f_str1 = self.f_str + '+' + str_penalty
                 self.f = sy.simplify(self.f_str1)
+                print('优化函数为：',self.f)
 
 
     def GeneratePenaltyFun(self,str_penalty_num,str_constrain):
@@ -43,6 +45,7 @@ class InteriorPointMethod(op.Optimization):
         for i in str_constrain:
             str_penalty = str_penalty + '1/' + '(' + i + ')' + '+'
         str_penalty = str_penalty[0:len(str_penalty) - 1] + ')'
+        print('罚函数字符串：',str_penalty)
         return str_penalty
 
 a = InteriorPointMethod(False)

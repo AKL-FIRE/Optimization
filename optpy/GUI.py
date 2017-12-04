@@ -49,8 +49,8 @@ class MyApp():
             from optpy import InsertValue as IV
             self.InsertValue = IV.InsertValue(True,self.str_fun.get(),self.str_epsilon.get(),self.str_segment.get())
         if self.v.get() == 8:
-            from optpy import Evolution as EV
-            self.Evolution = EV.Evolution(True,self.str_fun.get(),self.str_epsilon.get(),self.N.get(),self.pc.get(),self.pm.get(),self.evo_x.get())
+            from optpy import Evolution2 as EV
+            self.Evolution = EV.Evolution(True,self.str_fun.get(),self.str_epsilon.get(),self.N.get(),self.pc.get(),self.pm.get(),self.evo_x.get(),self.maxIteration.get())
 
     def cancel(self):
         sys.exit()
@@ -150,7 +150,7 @@ class MyApp():
         self.group2 = tk.LabelFrame(self.root, text='1.请选择您的优化方法：', padx=5, pady=5)
         self.group2.grid(row=0, column=1, padx=10, pady=10)
         LANGS = [('CoordinateAlternation(多变量高次优化)', 1), ('DFP(多变量高次优化)', 2), ('BFGS(多变量高次优化)', 3) ,('GradientDescent(多变量高次优化)', 4), ('NewtonMethod(多变量高次优化)', 5),
-                 ('GoldSegment(单变量高次优化)', 6),('InsertValue(单变量高次优化)', 7),('Evolution进化算法(单变量高次优化)',8)]
+                 ('GoldSegment(单变量高次优化)', 6),('InsertValue(单变量高次优化)', 7),('Evolution进化算法(多变量高次优化)',8)]
         self.v = tk.IntVar()
         self.v.set(1)
         for lang, num in LANGS:
@@ -162,6 +162,7 @@ class MyApp():
         self.pc = tk.StringVar()
         self.pm = tk.StringVar()
         self.evo_x = tk.StringVar()
+        self.maxIteration = tk.StringVar()
         self.group6 = tk.LabelFrame(self.root, text='2.进化算法（单变量高维优化）（可选）',padx=5, pady=5)
         self.group6.grid(row=1,column=0,padx=10,pady=10)
         tk.Label(self.group6, text='群体个数：').grid(row=0, column=0, padx=5, pady=5)
@@ -172,6 +173,8 @@ class MyApp():
         tk.Entry(self.group6, textvariable=self.pm).grid(row=2, column=1, padx=5, pady=5)
         tk.Label(self.group6, text='搜索区域（用逗号隔开）：').grid(row=3, column=0, padx=5, pady=5)
         tk.Entry(self.group6, textvariable=self.evo_x).grid(row=3, column=1, padx=5, pady=5)
+        tk.Label(self.group6, text='最大迭代次数：').grid(row=4, column=0, padx=5, pady=5)
+        tk.Entry(self.group6, textvariable=self.maxIteration).grid(row=4, column=1, padx=5, pady=5)
 
         #参数输入
         self.str_fun = tk.StringVar()

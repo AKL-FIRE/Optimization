@@ -50,7 +50,7 @@ class Evolution(op.Optimization):
     def Cross(self,SG):
         CG = []
         Y = [] #取出Y染色体
-        CPoint = int(2 / 3 * (self.N - 2)) #交叉基因的后1 / 3
+        CPoint = int(2 / 3 * self.l) #交叉基因的后1 / 3
         k = self.N - 2
         for i in range(int(k / 2)):
             random_selection = random.randint(0,k-1)
