@@ -27,6 +27,14 @@ class Optimization(object):
         for i in range(1,len(f_split)):
             if self.maxpow < float(f_split[i][0]):
                 self.maxpow = float(f_split[i][0])
+        if self.maxpow == 2:  #判断函数是否为凸函数
+            hess = sy.Matrix([self.f])
+            hess = hess.jacobian(self.x).jacobian(self.x)
+            hess_eigen = hess.eigenvals()
+            for i in hess_eigen.keys():
+                if float(i) < 0:
+                    print('请注意，该函数非凸可能求出局部极小值!!!!!!!!')
+                    break
 
     def calcufun(self):
         f = self.f
